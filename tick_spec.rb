@@ -1,8 +1,18 @@
 require "./tick.rb"
 
 describe Tick, "#tock" do
-	it "returns a String" do
-		tick = Tick.new
-		tick.tock("9:13 AM", 10).should be_a(String)
+
+	before do
+		@tick = Tick.new
+	end
+
+	it "should return a String" do
+		result = @tick.tock("9:13 AM", 10)
+		expect(result).to be_a(String)
+	end
+
+	it "should increment minutes" do
+		result = @tick.tock("9:13 AM", 10)
+		expect(result).to eql("9:23 AM")
 	end
 end
