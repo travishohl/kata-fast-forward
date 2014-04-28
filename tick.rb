@@ -14,9 +14,14 @@ class Tick < Object
 		@minutes = matches[2].to_i
 		@period = matches[3]
 
-		# Perform math on minutes
+		# Perform math
 		@minutes += increment
 
-		return "#{@hours}:#{@minutes} #{@period}"
+		if @minutes > 59
+			@hours += (@minutes / 60)
+			@minutes = (@minutes % 60)
+		end
+
+		return "#{@hours}:#{"%02d" % @minutes} #{@period}"
 	end
 end
