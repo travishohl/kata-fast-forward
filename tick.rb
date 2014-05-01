@@ -1,40 +1,14 @@
+require './my_time.rb'
+
 class Tick < Object
 
-	attr_accessor :hours
-	attr_accessor :minutes
-	attr_accessor :period
-	
 	def tock(string, increment)
 
-		# Parse the string using a regular expression
-		matches = string.match(/^(\d{1,2}):(\d{2}) (AM|PM)$/i)
+		# Create a new instance of My_Time
+		time = My_Time.new(string)
 
-		# Assign matches to instance variables
-		@hours = matches[1].to_i
-		@minutes = matches[2].to_i
-		@period = matches[3]
-
-		# Increment minutes
-		@minutes += increment
-
-		# Increment hours, if necessary
-		if @minutes > 59
-			@hours += (@minutes / 60)
-			@minutes = (@minutes % 60)
-
-			# Swap am and pm, if necessary
-			swaps = (@hours / 12)
-			swap_am_pm unless swaps.even?
-		end
-
-		return "#{@hours}:#{"%02d" % @minutes} #{@period}"
-	end
-
-	def swap_am_pm
-		if (@period == "AM")
-			@period = "PM"
-		else
-			@period = "AM"
-		end
+		# Ask the instance to increment itself and return itself
+		# represented as a string
+		return time.increment(increment).to_s
 	end
 end
