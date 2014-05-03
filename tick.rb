@@ -2,7 +2,7 @@ require './my_time.rb'
 
 class Tick < Object
 
-	def tock(string, increment)
+	def self.tock(string, increment)
 
 		# Create a new instance of My_Time
 		time = My_Time.new(string)
