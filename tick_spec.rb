@@ -39,15 +39,14 @@ describe Tick, "#tock" do
 			period = rand(0..1) ? "AM" : "PM"
 			string = "#{rand(1..12)}:#{sprintf('%02d', rand(0..59))} #{period}"
 			minutes = rand(0..5000)
-			puts "Input: (#{string}, #{minutes})"
 
 			# Compute answers
 			my_result = Tick.tock(string, minutes)
-			ruby_time = DateTime.strptime(string, "%l:%M %p") + Rational(minutes, 1440)
+			ruby_time = (DateTime.strptime(string, "%l:%M %p")) + Rational(minutes, 1440)
 			ruby_result = ruby_time.strftime("%l:%M %p").strip
 
 			# Compare answers
-			expect(ruby_result).to eql(my_result)
+			expect(my_result).to eql(ruby_result)
 		end
 	end
 end

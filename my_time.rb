@@ -23,6 +23,12 @@ attr_accessor :period
 
 		# Increment hours, if necessary
 		if @minutes > 59
+
+			# Twelve (12) should really be treated like zero (0)
+			if (@hours == 12)
+				@hours = 0
+			end
+
 			@hours += (@minutes / 60)
 			@minutes = (@minutes % 60)
 
@@ -31,12 +37,11 @@ attr_accessor :period
 			swap_am_pm unless swaps.even?
 
 			# Handle case when we increment more than 24 hours
-			@hours = (@hours % 24)
+			@hours = (@hours % 12)
 
-			# Convert from military time to 12-hour, if necessary
-			if (@hours > 12)
-				@hours = @hours - 12
-				swap_am_pm # and remember to do one more swap
+			# Revert zero (0) back to twelve (12) again
+			if (@hours == 0)
+				@hours = 12
 			end
 		end
 
