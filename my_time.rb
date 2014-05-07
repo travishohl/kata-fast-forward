@@ -29,9 +29,15 @@ attr_accessor :period
 			# Swap am and pm, if necessary
 			swaps = (@hours / 12)
 			swap_am_pm unless swaps.even?
-			
+
 			# Handle case when we increment more than 24 hours
 			@hours = (@hours % 24)
+
+			# Convert from military time to 12-hour, if necessary
+			if (@hours > 12)
+				@hours = @hours - 12
+				swap_am_pm # and remember to do one more swap
+			end
 		end
 
 		return self

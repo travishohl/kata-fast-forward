@@ -31,4 +31,23 @@ describe Tick, "#tock" do
 		result = Tick.tock("1:37 PM", 1440)
 		expect(result).to eql("1:37 PM")
 	end
+
+	it "produces the same output as Ruby's DateTime class when given ten (10) random input strings and increment values" do
+		10.times do
+
+			# Generate random input
+			period = rand(0..1) ? "AM" : "PM"
+			string = "#{rand(1..12)}:#{sprintf('%02d', rand(0..59))} #{period}"
+			minutes = rand(0..5000)
+			puts "Input: (#{string}, #{minutes})"
+
+			# Compute answers
+			my_result = Tick.tock(string, minutes)
+			ruby_time = DateTime.strptime(string, "%l:%M %p") + Rational(minutes, 1440)
+			ruby_result = ruby_time.strftime("%l:%M %p").strip
+
+			# Compare answers
+			expect(ruby_result).to eql(my_result)
+		end
+	end
 end
