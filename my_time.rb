@@ -29,6 +29,9 @@ attr_accessor :period
 			# Swap am and pm, if necessary
 			swaps = (@hours / 12)
 			swap_am_pm unless swaps.even?
+			
+			# Handle case when we increment more than 24 hours
+			@hours = (@hours % 24)
 		end
 
 		return self
