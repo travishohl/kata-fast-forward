@@ -1,4 +1,4 @@
-# A class to contain all of the time-related data and methods
+# A class to contain all of the time-related data and functionality
 class My_Time < Object
 
 attr_accessor :hours
@@ -17,18 +17,20 @@ attr_accessor :period
 		return self
 	end
 
-	def increment(increment)
-		# Increment minutes
-		@minutes += increment
+	def increment(minutes)
+		# Increment @minutes
+		@minutes += minutes
 
-		# Increment hours, if necessary
+		# Increment @hours, if necessary
 		if @minutes > 59
 
 			# Twelve (12) should really be treated like zero (0)
+			# (see http://en.wikipedia.org/wiki/12-hour_clock)
 			if (@hours == 12)
 				@hours = 0
 			end
 
+			# Increment @hours and put remainder in @minutes
 			@hours += (@minutes / 60)
 			@minutes = (@minutes % 60)
 
@@ -56,6 +58,7 @@ attr_accessor :period
 		end
 	end
 
+	# When a time is displayed (or converted to a string), use this format
 	def to_s
 		return "#{@hours}:#{"%02d" % @minutes} #{@period}"
 	end
