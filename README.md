@@ -20,7 +20,7 @@ My Implementation
 
 I've created a class called Tick that implements a class method called #tock. Necessary to #tock's implementation is a second class called My_Time, which handles all of the time-related functionality. My_Time is where the magic happens.
 
-To run my implementation, copy the source code to your local machine and run IRB from this project's directory with the following flag:
+To run my implementation, copy the source code to your local machine (remember to `bundle install`) and run IRB from this project's directory with the following flag:
 
 	irb -r "./tick.rb"
 
@@ -28,3 +28,7 @@ From IRB, invoke the class method Tick#tock, which will return the answer as a S
 
 	irb(main):001:0> Tick.tock("11:34 AM", 65)
 	=> "12:39 PM"
+
+There is also an RSpec test suite. From this project's directory, invoke the following command at the terminal:
+
+	rspec tick_spec.rb
