@@ -24,7 +24,7 @@ To run my implementation, copy the source code to your local machine (remember t
 
 	irb -r "./tick.rb"
 
-From IRB, invoke the class method Tick#tock, which will return the answer as a String:
+From IRB, invoke the class method Tick::tock, which will return the answer as a String:
 
 	irb(main):001:0> Tick.tock("11:34 AM", 65)
 	=> "12:39 PM"
